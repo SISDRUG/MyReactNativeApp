@@ -1,79 +1,120 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MyReactNativeApp
 
-# Getting Started
+Базовый проект React Native
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+# Список задач
 
-## Step 1: Start the Metro Server
+- [x] Установка NativeReact
+- [x] Настроить IDE
+- [x] Установка зависимости для NativeReact
+- [x] Компиляция базового приложения для Android и iOS
+- [ ] Разобраться с построением интерфейса и работой NativeReact
+- [ ] Создание БД 
+- [ ] Написать back-end для работы с БД на Java
+- [ ] Тестирование при помощи Postman
+- [ ] Подготовить интерфейс всего приложения
+- [ ] Связать приложение с БД
+- [ ] Оптимизация и тестирование
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Концепция
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Разрабатывается общая база данных, с которой работают мобильные приложения для пользователей. Отдельно разрабатывается десктоп-приложение с уникальным функционалом для администраторов. Приложения имитируют работу банковских систем и предоставляют возможности администрирования, отчетности и другие функции.
 
-```bash
-# using npm
-npm start
+## Функциональные требования
 
-# OR using Yarn
-yarn start
-```
+1. **Регистрация и аутентификация**
+   - Система должна обеспечивать регистрацию пользователей с валидацией введенных данных.
+   - Пользователь должен иметь возможность входа в систему с использованием электронной почты и пароля.
+   - Должна быть возможность восстановления пароля через электронную почту.
 
-## Step 2: Start your Application
+2. **Управление профилем**
+   - Пользователь должен иметь возможность редактировать свои личные данные (имя, email и т.д.).
+   - Система должна поддерживать изменение пароля.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+3. **Управление счетами**
+   - Пользователь может создавать новые счета с заданием необходимых параметров (валюта, тип счета).
+   - Пользователь может просматривать список своих счетов.
+   - Пользователь может закрывать счета, при этом все связанные с ними транзакции должны быть завершены.
 
-### For Android
+4. **Управление картами**
+   - Пользователь может создавать карты, привязанные к счетам.
+   - Пользователь может активировать и блокировать карты.
+   - Пользователь может просматривать баланс и историю транзакций по картам.
 
-```bash
-# using npm
-npm run android
+5. **Транзакции**
+   - Пользователь может пополнять счета и карты с использованием различных методов (банковский перевод, карта).
+   - Пользователь может переводить деньги между своими счетами и картами.
+   - Пользователь может переводить деньги на чужие счета и карты, при условии наличия разрешения от сервера.
+   - Пользователь может снимать наличные с карт через банкоматы.
 
-# OR using Yarn
-yarn android
-```
+6. **Получение выписок**
+   - Пользователь может запрашивать выписки по своим счетам и картам за выбранные периоды.
+   - Выписки должны быть представлены в удобном формате (например, PDF).
 
-### For iOS
+7. **Безопасность**
+   - Система должна поддерживать двухфакторную аутентификацию для повышения уровня безопасности.
+   - Все данные пользователей должны быть защищены с использованием современных методов шифрования.
 
-```bash
-# using npm
-npm run ios
+8. **Поддержка**
+   - Должен быть доступен раздел FAQ для самостоятельного поиска ответов на распространенные вопросы.
 
-# OR using Yarn
-yarn ios
-```
+### Пользовательские требования (Admin)
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+1. **Управление пользователями**
+   - Администратор должен иметь возможность просматривать список всех пользователей системы.
+   - Администратор может активировать, блокировать или удалять учетные записи пользователей.
+   - Администратор может редактировать данные пользователей (например, сбрасывать пароли, изменять роли).
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+2. **Управление счетами и картами**
+   - Администратор может просматривать все счета и карты пользователей.
+   - Администратор может создавать, редактировать и закрывать счета и карты от имени пользователей.
 
-## Step 3: Modifying your App
+3. **Мониторинг транзакций**
+   - Администратор должен иметь доступ к журналу всех транзакций в системе.
+   - Администратор может фильтровать транзакции по различным параметрам (дата, сумма, пользователь и т.д.).
 
-Now that you have successfully run the app, let's modify it.
+4. **Генерация отчетов**
+   - Администратор должен иметь возможность генерировать отчеты по активности пользователей, транзакциям и финансовым операциям.
+   - Отчеты должны быть доступны в различных форматах (например, PDF, CSV).
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+5. **Управление системой**
+   - Администратор может управлять настройками системы (например, параметры безопасности, лимиты на транзакции).
+   - Администратор должен иметь возможность просматривать и управлять логами системы для аудита и мониторинга.
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+6. **Поддержка пользователей**
+   - Администратор должен иметь возможность просматривать запросы в службу поддержки и отвечать на них.
+   - Администратор может назначать приоритет запросам пользователей.
 
-## Congratulations! :tada:
+## Пользовательские требования (User)
 
-You've successfully run and modified your React Native App. :partying_face:
+1. **Регистрация и вход**
+   - Пользователь должен иметь возможность зарегистрироваться в приложении, предоставив необходимые данные (имя, электронную почту, пароль).
+   - Пользователь может войти в систему, используя свои учетные данные.
 
-### Now what?
+2. **Управление профилем**
+   - Пользователь может изменять пароль.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+3. **Управление счетами**
+   - Пользователь может создавать новые счета и просматривать существующие.
+   - Пользователь может закрывать счета при необходимости.
 
-# Troubleshooting
+4. **Управление картами**
+   - Пользователь может создавать, активировать и блокировать карты.
+   - Пользователь может просматривать баланс и историю транзакций по картам.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+5. **Транзакции**
+   - Пользователь может пополнять счета и карты.
+   - Пользователь может осуществлять переводы между своими счетами и картами.
+   - Пользователь может осуществлять переводы на чужие счета и карты.
+   - Пользователь может снимать наличные с карт.
 
-# Learn More
+6. **Получение выписок**
+   - Пользователь может запрашивать выписки по счетам и картам за выбранные периоды.
+   - Выписки должны быть доступны в удобном формате (например, PDF).
 
-To learn more about React Native, take a look at the following resources:
+7. **Безопасность**
+   - Пользователь должен иметь возможность включить двухфакторную аутентификацию для повышения безопасности.
+   - Все данные пользователя должны быть защищены и шифроваться.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+8. **Поддержка**
+   - Пользователь может обратиться в службу поддержки через приложение для решения проблем или получения помощи (FAQ).
